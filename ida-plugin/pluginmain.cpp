@@ -4,21 +4,21 @@
 #define USE_STANDARD_FILE_FUNCTIONS
 
 
-//Õâ¸öÉæ¼°µ½µØÖ·³¤¶ÈµÄÎÊÌâ£¬ÓÃida64.exe¾ÍµÃ¼ÓÕâ¸öºê£¬ida32.exe²»ÓÃ
+//è¿™ä¸ªæ¶‰åŠåˆ°åœ°å€é•¿åº¦çš„é—®é¢˜ï¼Œç”¨ida64.exeå°±å¾—åŠ è¿™ä¸ªå®ï¼Œida32.exeä¸ç”¨
 #define __EA64__
 //
-// ida7.5¼°ÒÔÉÏµÄ²å¼şÒ»¶¨Òª¶¨ÒåÕâ¸öºê
-// ÎªÁË±£Ö¤ÀÏ´úÂëÄÜ¹»±àÒë£¬IDA»¹ÊÇ»áÖ§³ÖÒ»Ğ©ÀÏ½á¹¹Ìå£¬µ«ÊÇÔÚĞÂIDAÉÏÈ«¶¼²»ÄÜÓÃ£¬»áµ¼ÖÂÎ´¶¨ÒåÎÊÌâ
-// Õâ¸öºêÈ·±£ÄãÃ»ÓĞÊ¹ÓÃsdkÖĞ·ÏÆúµÄ´úÂë
+// ida7.5åŠä»¥ä¸Šçš„æ’ä»¶ä¸€å®šè¦å®šä¹‰è¿™ä¸ªå®
+// ä¸ºäº†ä¿è¯è€ä»£ç èƒ½å¤Ÿç¼–è¯‘ï¼ŒIDAè¿˜æ˜¯ä¼šæ”¯æŒä¸€äº›è€ç»“æ„ä½“ï¼Œä½†æ˜¯åœ¨æ–°IDAä¸Šå…¨éƒ½ä¸èƒ½ç”¨ï¼Œä¼šå¯¼è‡´æœªå®šä¹‰é—®é¢˜
+// è¿™ä¸ªå®ç¡®ä¿ä½ æ²¡æœ‰ä½¿ç”¨sdkä¸­åºŸå¼ƒçš„ä»£ç 
 //
 #define NO_OBSOLETE_FUNCS
 #include "./hexrays_sdk/include/hexrays.hpp"
 #include<fstream>
 
-//IDAÄÚ²¿ÓÃµÄÃû×Ö£¬Ê¶±ğÃ¿¸öUI²¿¼şµÄ,Ç°Ãæ¼Ó×÷ÓÃÓòÊÇIDAµÄÍÆ¼ö×ö·¨
+//IDAå†…éƒ¨ç”¨çš„åå­—ï¼Œè¯†åˆ«æ¯ä¸ªUIéƒ¨ä»¶çš„,å‰é¢åŠ ä½œç”¨åŸŸæ˜¯IDAçš„æ¨èåšæ³•
 #define action_internal_name_1 "example::name"
 
-//Õâ¸öÊÇÓÒ¼üÏÔÊ¾¸øÓÃ»§µÄÃû×Ö
+//è¿™ä¸ªæ˜¯å³é”®æ˜¾ç¤ºç»™ç”¨æˆ·çš„åå­—
 #define action_show_name_1 "example"
 
 using namespace std;
@@ -40,7 +40,7 @@ ssize_t idaapi ui_hook(void* user_data, int notification_code, va_list va)
 
 struct example_action : public action_handler_t
 {
-    //action±»´¥·¢µÄÖ÷Âß¼­
+    //actionè¢«è§¦å‘çš„ä¸»é€»è¾‘
     virtual int idaapi activate(action_activation_ctx_t* ctx) override
     {
         static char buffer[128]{};
@@ -53,11 +53,11 @@ struct example_action : public action_handler_t
         write_file << "//Generate by https://github.com/helloobaby/pdbtoheader.git \n\n\n";
         write_file << "#pragma once \n";
         write_file << "#include <ntdef.h> \n\n\n";
-//        for (int f = 0; f < get_func_qty(); f++)   //get_func_qty() »ñÈ¡ÓĞ·ûºÅº¯ÊıÊıÁ¿
+//        for (int f = 0; f < get_func_qty(); f++)   //get_func_qty() è·å–æœ‰ç¬¦å·å‡½æ•°æ•°é‡
 //        {
-//            func_t* curfunc = getn_func(f);     //»ñÈ¡º¯ÊıĞÅÏ¢
-//            get_func_name(&funcName, curfunc->start_ea); //»ñÈ¡º¯ÊıÃû
-//            //°ÑÃ»·ûºÅµÄsub_xxÅÅ³ıÁË£¬È»ºóĞ´ÈëÎÄ¼ş
+//            func_t* curfunc = getn_func(f);     //è·å–å‡½æ•°ä¿¡æ¯
+//            get_func_name(&funcName, curfunc->start_ea); //è·å–å‡½æ•°å
+//            //æŠŠæ²¡ç¬¦å·çš„sub_xxæ’é™¤äº†ï¼Œç„¶åå†™å…¥æ–‡ä»¶
 //            if (funcName.find(("sub_")) != qstring::npos)
 //                continue;
 //            if (funcName.find(("@")) != qstring::npos)
@@ -66,9 +66,9 @@ struct example_action : public action_handler_t
 //                continue;
 //
 //#if 0
-//            msg("%s:\t %llx\n",funcName.c_str(), curfunc->start_ea);    //´òÓ¡º¯ÊıÃûºÍº¯ÊıÆğÊ¼µØÖ·.
+//            msg("%s:\t %llx\n",funcName.c_str(), curfunc->start_ea);    //æ‰“å°å‡½æ•°åå’Œå‡½æ•°èµ·å§‹åœ°å€.
 //#endif       
-//            //²»ÒªÓÃc/c++Ìá¹©µÄ±ê×¼sprintf£¬»áµ¼ÖÂIDAÎŞ·¨Õı³£¹Ø±Õ£¡
+//            //ä¸è¦ç”¨c/c++æä¾›çš„æ ‡å‡†sprintfï¼Œä¼šå¯¼è‡´IDAæ— æ³•æ­£å¸¸å…³é—­ï¼
 //            qsnprintf(buffer,sizeof(buffer),
 //                "ULONG Offset%s = 0x%x;\n", funcName.c_str(),
 //                curfunc->start_ea - get_imagebase());
@@ -89,7 +89,7 @@ struct example_action : public action_handler_t
 #if 0
                 msg("%s\n", seg_name.c_str());
 #endif
-                //ºöÂÔÏÂÃæµÄ½Ú£¬¸ù¾İÄÚºËÎÄ¼şµÄ²»Í¬ÒªÌí¼Ó»ò¼õÉÙ£¬ÕâÀïÊÇwin10 1809µÄÀı×Ó
+                //å¿½ç•¥ä¸‹é¢çš„èŠ‚ï¼Œæ ¹æ®å†…æ ¸æ–‡ä»¶çš„ä¸åŒè¦æ·»åŠ æˆ–å‡å°‘ï¼Œè¿™é‡Œæ˜¯win10 1809çš„ä¾‹å­
                 if (!stricmp(seg_name.c_str(), "kvascode")||
                     !stricmp(seg_name.c_str(), "retpol")|| !stricmp(seg_name.c_str(), "INITKDBG")||
                     !stricmp(seg_name.c_str(), "POOLCODE")|| !stricmp(seg_name.c_str(), ".idata")||
@@ -102,7 +102,7 @@ struct example_action : public action_handler_t
                 for (ea_t i = seg_start; i < seg_end; i++)
                 {
                     ea_name = get_name(i);
-                    if (ea_name.size()) {//¹ıÂËÒ»ÏÂÃ»ÓĞ·ûºÅµÄ
+                    if (ea_name.size()) {//è¿‡æ»¤ä¸€ä¸‹æ²¡æœ‰ç¬¦å·çš„
                         if (ea_name.find("unk") != qstring::npos)
                             continue;
                         if (ea_name.find("loc") != qstring::npos)
@@ -113,7 +113,7 @@ struct example_action : public action_handler_t
                             continue;
                         if (ea_name.find("off") != qstring::npos)
                             continue;
-                        if (ea_name.find('a', 0) != qstring::npos)//ida »á°Ñascal×Ö·û´®ÃüÃûÎªa¿ªÍ·
+                        if (ea_name[0] == 'a'))//ida ä¼šæŠŠascalå­—ç¬¦ä¸²å‘½åä¸ºaå¼€å¤´
                             continue;
                         if (ea_name.find("stru") != qstring::npos)
                             continue;
@@ -146,7 +146,7 @@ struct example_action : public action_handler_t
 
     virtual action_state_t idaapi update(action_update_ctx_t* ctx) override
     {
-        //AST_DISABLEÑ¡ÏîµÄ»°action¾ÍÊÇ»ÒÉ«£¬ÎŞ·¨µã
+        //AST_DISABLEé€‰é¡¹çš„è¯actionå°±æ˜¯ç°è‰²ï¼Œæ— æ³•ç‚¹
         return AST_ENABLE_ALWAYS;
     }
 };
@@ -209,12 +209,12 @@ static const char comment[] = "whatever you want";
 plugin_t PLUGIN =
 {
   IDP_INTERFACE_VERSION,
-  PLUGIN_MULTI|PLUGIN_UNL|PLUGIN_HIDE,//PLUGIN_UNLÓÃÀ´µ÷ÊÔ£¬runÒ»´Î¾Í×Ô¶¯Ğ¶ÔØµÄ¹¦ÄÜ
+  PLUGIN_MULTI|PLUGIN_UNL|PLUGIN_HIDE,//PLUGIN_UNLç”¨æ¥è°ƒè¯•ï¼Œrunä¸€æ¬¡å°±è‡ªåŠ¨å¸è½½çš„åŠŸèƒ½
   init,                 // initialize
   nullptr,
   nullptr,
   comment,              // long comment about the plugin
   nullptr,              // multiline help about the plugin
-  "whatever you want", // ÔÚEdit->PluginsÖĞÏÔÊ¾µÄÃû×Ö
-  nullptr,              // ÈÈ¼ü
+  "whatever you want", // åœ¨Edit->Pluginsä¸­æ˜¾ç¤ºçš„åå­—
+  nullptr,              // çƒ­é”®
 };
