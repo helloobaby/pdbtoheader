@@ -129,7 +129,7 @@ struct example_action : public action_handler_t
                         msg("%s\n", ea_name.c_str());
 #endif
                         qsnprintf(buffer, sizeof(buffer),
-                            "ULONG Offset%s = 0x%x;\n", ea_name.c_str(),
+                            "const ULONG Offset%s = 0x%x;\n", ea_name.c_str(),
                             i - get_imagebase());
                         write_file << buffer;
                         write_file.flush();
