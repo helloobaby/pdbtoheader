@@ -113,7 +113,7 @@ struct example_action : public action_handler_t
                             continue;
                         if (ea_name.find("off") != qstring::npos)
                             continue;
-                        if (ea_name[0] == 'a'))//ida 会把ascal字符串命名为a开头
+                        if (ea_name[0] == 'a')//ida 会把ascal字符串命名为a开头
                             continue;
                         if (ea_name.find("stru") != qstring::npos)
                             continue;
