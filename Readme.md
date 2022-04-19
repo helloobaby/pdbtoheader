@@ -1,4 +1,4 @@
-#a ida plugin
+## A IDA plugin
 
 基于IDA,将所有符号转成偏移存储在头文件里。
 
