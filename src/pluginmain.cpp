@@ -101,8 +101,8 @@ struct example_action : public action_handler_t
                         if (ea_name.find("_imp_") != qstring::npos) //导入表
                           continue;
 
-                        std::string t = std::format("const ULONG Offset_{} = 0x{};\n",
-                                    ea_name.c_str(), i - get_imagebase());
+                        std::string t = std::format("const ULONG Offset_{} = {:#x};\n",
+                            ea_name.c_str(), i - get_imagebase());
                         write_file << t;
                     }
                 }
