@@ -1,8 +1,10 @@
 ## A IDA plugin
 
-基于IDA,将所有符号转成偏移存储在头文件里。
+基于IDA,将所有符号转成偏移存储在头文件里(通俗点说就是硬编码(hard signature))
 
-Download release :  https://anonfiles.com/FcpfabZcxf/pdbtoheader64_dll
+适合写点poc的项目。
+
+
 
 用法:  
 
