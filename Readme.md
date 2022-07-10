@@ -5,9 +5,9 @@
 适合写点poc的项目。
 
 编译:
-mkdir build 
-cd build
-cmake -DIDA_INSTALL_DIR="E:\IDA Pro 7.6" ..    
+mkdir build  
+cd build  
+cmake -DIDA_INSTALL_DIR="E:\IDA Pro 7.6" ..      
 上面提供自己的ida路径,作用就是将dll编译到插件目录的
 
 
