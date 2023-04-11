@@ -1,3 +1,8 @@
+## Info
+这个项目被
+https://github.com/GetRektBoy724/KPDB
+替代了
+
 ## A IDA plugin
 
 基于IDA,将所有符号转成偏移存储在头文件里(通俗点说就是硬编码(hard signature))
